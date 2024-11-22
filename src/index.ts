@@ -35,7 +35,7 @@ app.use(express.json());
 // CORS configuration
 app.use(
   cors({
-    origin: "https://shilling-bot.vercel.app/",
+    origin: "*",
     methods: "GET,POST,PUT,DELETE", // Allowed methods (customize as needed),
     credentials: true,
   })

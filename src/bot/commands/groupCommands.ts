@@ -1,11 +1,14 @@
 // bot/commands/groupCommands.js
 import TelegramBot from "node-telegram-bot-api";
 import Raid from "../../models/raidModel";
+import dotenv from "dotenv";
 import { getGeneralSettings } from "../../controllers/groupSettingController";
 import {
   adjustSettingsMenu,
   generateSettingsHeader,
 } from "../../utils/adjustSettingMenu";
+
+dotenv.config();
 
 const handleRaidSettingsCommand = async (
   bot: TelegramBot,
@@ -22,14 +25,12 @@ const handleRaidSettingsCommand = async (
   const settings = await getGeneralSettings(userId);
   const header = generateSettingsHeader(settings, smashes);
 
-  const miniAppUrl = `https://t.me/Felix0707bot/felix_raidbot`;
-
   const keyboard = {
     inline_keyboard: [
       [
         {
           text: "⚙️Adjust Settings",
-          url: miniAppUrl,
+          url: process.env.MiniAppUrl,
         },
       ],
     ],

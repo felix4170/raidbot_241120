@@ -3,7 +3,9 @@ import { twitterClient } from "../config/apiConfig";
 import GroupSetting from "../models/groupSetting";
 import RaidMessage from "../models/messageModel";
 import Raid from "../models/raidModel";
+import dotenv from "dotenv";
 
+dotenv.config();
 // Store raid progress in a local object
 interface RaidProgress {
   raidId: any;
@@ -110,8 +112,6 @@ async function startRaid(
 🔒Chat is ${lockStatus}🔒
 `;
 
-  const miniAppUrl = `https://t.me/Felix0707bot/felix_raidbot`;
-
   // Always disable tweet preview
   bot.sendMessage(chatId, raidMessage, {
     disable_web_page_preview: true,
@@ -121,7 +121,7 @@ async function startRaid(
         [
           {
             text: `🦈 Smash 🦈`, // Shark icon for "Start Raid"
-            url: miniAppUrl,
+            url: process.env.MiniAppUrl,
           },
         ],
       ],

@@ -2,7 +2,9 @@ import TelegramBot from "node-telegram-bot-api";
 import { setGeneralSettings } from "../controllers/groupSettingController";
 import GroupSetting from "../models/groupSetting";
 import { documentButton } from "../utils/menu";
+import dotenv from "dotenv";
 
+dotenv.config();
 // Type the msg object using Telegram Bot API typings
 interface TelegramMessage {
   chat: {
@@ -51,8 +53,6 @@ async function setupWelcomeRoutes(bot: TelegramBot) {
 🆘 **Need help?** Contact a team member or check the Setup Guide 📖 below for more details.
 `;
 
-    const miniAppUrl = `https://t.me/Felix0707bot/felix_raidbot`;
-
     bot.sendAnimation(chatId, gifUrl, {
       caption: featuresMessage,
       reply_markup: {
@@ -60,7 +60,7 @@ async function setupWelcomeRoutes(bot: TelegramBot) {
           [
             {
               text: `Documentation`, // Use icon dynamically
-              url: miniAppUrl, // Correct structure for web app
+              url: process.env.MiniAppUrl, // Correct structure for web app
             },
           ],
         ],

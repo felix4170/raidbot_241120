@@ -2,8 +2,10 @@ import TelegramBot, {
   InlineKeyboardMarkup,
   SendMessageOptions,
 } from "node-telegram-bot-api";
+import dotenv from "dotenv";
 import RaidMessage from "../models/messageModel";
 
+dotenv.config();
 // Extract post ID from raid link
 const extractPostId = (raidLink: string) => {
   const regex = /status\/(\d+)/; // Regex to extract tweet ID
@@ -58,15 +60,13 @@ const generateStartRaidButton = async (
 // Generate documentation button
 const documentButton = async (bot: TelegramBot, chatId: any) => {
   try {
-    const miniAppUrl = `https://t.me/Felix0707bot/felix_raidbot`;
-
     // Create the reply markup with buttons
     const replyMarkup: InlineKeyboardMarkup = {
       inline_keyboard: [
         [
           {
             text: "Documentation",
-            url: miniAppUrl,
+            url: process.env.MiniAppUrl,
           },
         ],
       ],
